@@ -1,4 +1,5 @@
 .code16 #use 16bit
+.global start
 .text #code segment start
 
 SYSSIZE = 0x3000
@@ -13,6 +14,7 @@ ENDSEG   = SYSSEG + SYSSIZE		# where to stop loading
 #			0x301 - first partition on first drive etc
 ROOT_DEV = 0x306
 
+start:
 	movw %cs, %ax #cs:ip was initialized by BOIS instruction 'jmpi 0, 0x07c0'
 	movw %ax, %ds #initialize ds, es and ss with cs
 	movw %ax, %es
